@@ -30,7 +30,7 @@ Getting concepts for an image:
 
 (def image-to-process "https://samples.clarifai.com/metro-north.jpg")
 
-(clarifai/concepts my-api-key model-to-use image-to-process))
+(clarifai/concepts my-api-key model-to-use image-to-process)
 ;=> ({:name "train", :value 0.9987074} 
 ;    {:name "railway", :value 0.9971303} 
 ;    {:name "transportation system", :value 0.9954438} 
@@ -44,7 +44,7 @@ Getting concepts for a video:
 (def video-to-process "https://samples.clarifai.com/beer.mp4")
 
 (def concepts-from-video 
-  (clarifai/video-concepts my-api-key model-to-use image-to-process)))
+  (clarifai/video-concepts my-api-key model-to-use image-to-process))
   
 ;; Clarifai provides a list of concepts for each video frame:
 (first (concepts-from-video))
