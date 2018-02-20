@@ -70,17 +70,16 @@ Getting concepts for a video:
 ;                ...)}
 ```
 
-Note that, for video, Clarifai only supports a subset of its public models.
+Note that, for video, Clarifai only supports [a subset of its public models](https://www.clarifai.com/developer/guide/predict#videos).
 
 ## Clarifai Predict API documentation
 
-Please visit [Clarifai Predict API](https://www.clarifai.com/developer/guide/predict#images).
+Please visit [Clarifai Predict API](https://www.clarifai.com/developer/guide/predict).
 
 ## Todo
 
 * add support for pagination
 * add support for Search, Train, Evaluate, Feedback and Workflow APIs
-
 
 
 ## License
