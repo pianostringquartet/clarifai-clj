@@ -5,8 +5,7 @@
 
 ;; --------------------------------------------------
 ;; TODO:
-;; - support Search API endpoint (which is image only)
-;; - tests for other models?
+;; - support other Clarifai APIs (e.g. Search API)
 ;; - support images via bytes (not just urls)
 ;; - support paging through results
 ;; --------------------------------------------------
@@ -32,11 +31,7 @@
   {:headers {:authorization (str "Key " api-key)
              :content-type "Application/JSON"}})
 
-(defn- request-body
-  "
-  url (str): url to image or video
-  video-or-image (keyword): :video | :image"
-  [url video-or-image]
+(defn- request-body [url video-or-image]
   {:body (json/write-str {:inputs [{:data {video-or-image {:url url}}}]})})
 
 (defn- post-request [api-key model url video-or-image]
@@ -67,7 +62,9 @@
 ;; Predict API image
 ;; ------------------------------------------------------------
 
-(defn- image-json->concepts [image-json]
+(defn- image-json->concepts
+  "Get concepts from Predict API image response's JSON."
+  [image-json]
   (map clean-concept (-> image-json
                        (:outputs)
                        (first)
@@ -77,8 +74,8 @@
   "Get Predict API model's concepts (and their certainty) for image.
 
    Returns seq of 'concept maps', where a concept map is:
-    {:name <concept's name (str)>
-     :value <concept's certainty (double)>}
+    `{:name <concept's name (str)>
+     :value <concept's certainty (double)>}`
 
    api-key (str): your Clarifai API Key
    model (keyword): model to use e.g. :general vs. :apparel
@@ -92,10 +89,11 @@
 ;; Predict API video
 ;; ------------------------------------------------------------
 
-(defn- get-frames
-  "Given a json from a predict api video request,
-  returns 'frames': seq of maps,
-    where each map represents time/frame info and concepts for a given frame."
+(defn- video-json->frames
+  "Get frame data from Predict API video response's JSON.
+
+  Returns a seq of maps,
+    where each map represents a frame and its concepts."
   [video-json]
   (:frames (:data (first (second (second video-json))))))
 
@@ -107,7 +105,12 @@
     {:frame (:frame_info frame)
      :concepts concepts}))
 
-(defn valid-video-model? [model]
+(defn valid-video-model?
+  "Is the model valid for video processing?
+
+  Only a subset of public models are supported for video.
+  See models/video-models."
+  [model]
   (if (model models/video-models) true false))
 
 (defn video-concepts
@@ -130,7 +133,7 @@
                                             model
                                             video-url
                                             :video))]
-      (map clean-frame (get-frames video-json)))))
+      (map clean-frame (video-json->frames video-json)))))
 
 
 
