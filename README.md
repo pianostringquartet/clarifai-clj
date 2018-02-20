@@ -2,6 +2,8 @@
 
 Clojure wrapper for [Clarifai](https://www.clarifai.com/) API.
 
+[![Clojars Project](https://img.shields.io/clojars/v/clarifai-clj.svg)](https://clojars.org/clarifai-clj)
+
 NOTE: Currently limited to: 
 
 * Predict API (i.e. no Search, Train, etc. APIs) and
