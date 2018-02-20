@@ -13,7 +13,7 @@ NOTE: Currently limited to:
 
 Add clarifai-clj to your Leiningen `project.clj` as a `:dependency`:
 
-```scheme
+```clojure
 [clarifai-clj "1.0.0"]
 ```
 
@@ -25,7 +25,7 @@ Include clarifai-clj in your namespace:
 
 Getting concepts for an image:
 
-```scheme
+```clojure
 (def my-api-key "123456789") ; use your real one :-)
 
 (def model-to-use :general) ; see clarifai-clj.models for supported models list
@@ -42,7 +42,7 @@ Getting concepts for an image:
 
 Getting concepts for a video:
 
-```scheme
+```clojure
 (def video-to-process "https://samples.clarifai.com/beer.mp4")
 
 (def concepts-from-video 
@@ -69,8 +69,6 @@ Getting concepts for a video:
 ;               {:name "drink", :value 0.96293694}
 ;                ...)}
 ```
-
-
 
 Note that, for video, Clarifai only supports a subset of its public models.
 
