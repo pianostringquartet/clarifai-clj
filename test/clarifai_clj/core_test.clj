@@ -1,9 +1,12 @@
 (ns clarifai-clj.core-test
   (:require [clojure.test :refer :all]
-            [clarifai-clj.core :refer :all]))
+            [clarifai-clj.core :refer :all]
+            [clarifai-clj.env :refer [api-key]]))
 
-;; TODO: Move to env-vars
-(def api-key "ebc31d071d23414ab7e369c003e3c3bf")
+
+;; TODO: Find a better testing approach.
+;; Currently, a test breaks when e.g. a model classifies an image differently.
+
 
 ;; ------------------------------------------------------------
 ;; Predict API image: test constants
