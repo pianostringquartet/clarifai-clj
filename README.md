@@ -49,19 +49,19 @@ Getting concepts for a video:
   (clarifai/video-concepts my-api-key model-to-use image-to-process))
   
 ;; Clarifai provides a list of concepts for each video frame:
-(first (concepts-from-video))
+(first concepts-from-video)
 ;=> {:frame {:index 0, :time 0},
 ;    :concepts ({:name "drink", :value 0.9850012} 
 ;               {:name "glass", :value 0.9776815} 
 ;               {:name "alcohol", :value 0.9754255} 
 ;                ...)}
 
-(second (concepts-from-video))
+(second concepts-from-video)
 ;=> {:frame {:index 1, :time 1000},
 ;    :concepts ({:name "drink", :value 0.9850012} 
 ;                ...)}
 
-(last (concepts-from-video))
+(last concepts-from-video)
 ;=> {:frame {:index 8, :time 8000}, 
 ;    :concepts ({:name "foam", :value 0.9974463} 
 ;               {:name "beer", :value 0.9749906} 
